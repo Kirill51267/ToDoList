@@ -1,0 +1,22 @@
+﻿@model ToDoList.Domain.Entities.TaskItem
+
+<div class="modal" tabindex="-1" id="modalUpdateItem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="text-align: left" class="modal-title">Переименовать</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <label asp-for="Title"></label><br />
+                <input asp-for="Title" type="text" class="form-control" name="Title" /><br />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Изменить" class="btn btn-primary" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

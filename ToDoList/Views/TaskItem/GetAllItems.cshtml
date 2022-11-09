@@ -1,0 +1,75 @@
+﻿
+
+<table class="table table-sm">
+    <h3>Задачи</h3>
+    <tr><th style="width: 50px; max-height:50px;"></th><th></th><th></th></tr>
+    @foreach (var item in @ViewBag.TaskItems)
+    {
+        if(item.Complited)
+        {
+            <tr>
+                <td class="alnleft">
+                    <form method="post" asp-controller="TaskItem" asp-action="ChangeComplited" asp-route-id="@item.Id" asp-route-listId="@ViewBag.ListId">
+                        <button class="complitedBtnSize">
+                            <img src="https://www.pngarts.com/files/9/Vector-Green-Tick-PNG-Free-Download.png" style="max-width: 100%;max-height: 100%"></img>
+                        </button>
+                    </form>
+                    
+                </td>
+                <td>
+
+                    <button class="btn btn-light withheigh100 textLeft complited">@item.Title</button>
+                       
+                </td>
+                <td class='alnright'>
+
+                    <form method="post" asp-controller="TaskItem" asp-action="UpdateTaskItem" asp-route-id="@item.Id" asp-route-listId="@ViewBag.ListId" class="inlineBlock">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateItem">Изменить</button>
+                        <partial name="~/Views/TaskItem/UpdateTaskItem.cshtml" />
+                    </form>
+
+                    <form asp-controller="TaskItem" asp-action="Delete" method="post" asp-route-listId="@ViewBag.ListId" asp-route-id="@item.Id" class="inlineBlock">
+                        <input type="submit" class="btn btn-danger" value="Удалить" />
+                    </form>
+
+                </td>
+            </tr>
+        }
+        else{
+            <tr>
+                <td class="alnleft">
+                    <form method="post" asp-controller="TaskItem" asp-action="ChangeComplited" asp-route-id="@item.Id" asp-route-listId="@ViewBag.ListId">
+                        <button class="complitedBtnSize">
+                            <img src="" style="max-width: 100%;max-height: 100%"></img>
+                        </button>
+                    </form>
+                </td>
+                <td>
+
+
+                    <button class="btn btn-light withheigh100 textLeft">@item.Title</button>
+
+                </td>
+                <td class='alnright'>
+
+                    <form method="post" asp-controller="TaskItem" asp-action="UpdateTaskItem" asp-route-id="@item.Id" asp-route-listId="@ViewBag.ListId" class="inlineBlock">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateItem">Изменить</button>
+                        <partial name="~/Views/TaskItem/UpdateTaskItem.cshtml" />
+                    </form>
+
+                    <form asp-controller="TaskItem" asp-action="Delete" method="post" asp-route-listId="@ViewBag.ListId" asp-route-id="@item.Id" class="inlineBlock">
+                        <input type="submit" class="btn btn-danger" value="Удалить" />
+                    </form>
+
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+
+<form method="post" asp-controller="TaskItem" asp-route-listId="@ViewBag.ListId" asp-action="AddTaskItem">
+    <button type="button" class="btn btn-primary btn-circle bottomRightRectangle" data-bs-toggle="modal" data-bs-target="#modalAddItem">+</button>
+    <partial name="~/Views/TaskItem/AddTaskItem.cshtml" />
+</form>

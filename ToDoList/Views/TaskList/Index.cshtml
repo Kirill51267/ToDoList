@@ -1,0 +1,45 @@
+﻿@using ToDoList.Models
+@{
+    ViewData["Title"] = ""; 
+}
+
+
+<table class="table table-sm">
+    <h3>Списки задач</h3>
+    <tr><th></th><th></th></tr>
+    @foreach (var item in @ViewBag.TaskLists)
+    {
+        <tr>
+            <td>
+
+                <form method="get" asp-controller="TaskItem" asp-action="GetAllItems" asp-route-id="@item.Id">
+                    <input type="submit" class="btn btn-light withheigh100 textLeft" value="@item.Title" />
+                </form>
+                
+            </td>
+            <td class='alnright'>
+
+                <form method="post" asp-controller="TaskList" asp-action="UpdateTaskList" asp-route-id="@item.Id" class="inlineBlock">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateList" >Изменить</button>
+                    <partial name="~/Views/TaskList/UpdateTaskList.cshtml" />
+                </form>
+
+                <form asp-controller="TaskList" asp-action="Delete" method="post" asp-route-id="@item.Id" class="inlineBlock">
+                    <input type="submit" class="btn btn-danger" value="Удалить" />
+                </form>
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+<button type="button" class="btn btn-primary btn-circle bottomRightRectangle" data-bs-toggle="modal" data-bs-target="#modalAddList">+</button>
+
+
+<partial name="~/Views/TaskList/AddTaskList.cshtml" />
